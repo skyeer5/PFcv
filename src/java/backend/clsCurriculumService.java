@@ -11,5 +11,6 @@ import java.util.List;
  * @author Dirinfo
  */
 public class clsCurriculumService {
-    List<clsCurriculum> curriculms;
+    public List<clsCurriculum> curriculms;
+    
 }

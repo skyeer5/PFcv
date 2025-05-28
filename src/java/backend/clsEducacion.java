@@ -4,6 +4,8 @@
  */
 package backend;
 
+import java.sql.Date;
+
 /**
  *
  * @author Dirinfo
@@ -11,24 +13,16 @@ package backend;
 public class clsEducacion {
     public String Institucion;
     public String Titulo;
-    public String Fecha;
-    public int IdClsCurriculum;
+    public Date Fecha;
 
-    public clsEducacion(String Institucion, String Titulo, String Fecha, int IdClsCurriculum) {
+    public clsEducacion(String Institucion, String Titulo, Date Fecha) {
         this.Institucion = Institucion;
         this.Titulo = Titulo;
         this.Fecha = Fecha;
-        this.IdClsCurriculum = IdClsCurriculum;
     }
 
-    public int getIdClsCurriculum() {
-        return IdClsCurriculum;
+    public clsEducacion() {
     }
-
-    public void setIdClsCurriculum(int IdClsCurriculum) {
-        this.IdClsCurriculum = IdClsCurriculum;
-    }
-
 
 
     public String getInstitucion() {
@@ -47,11 +41,13 @@ public class clsEducacion {
         this.Titulo = Titulo;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return Fecha;
     }
 
-    public void setFecha(String Fecha) {
+    public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
+
+
 }

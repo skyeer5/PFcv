@@ -3,34 +3,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package backend;
-
+import java.sql.Date;
 /**
  *
  * @author Dirinfo
  */
 public class clsExperienciaLaboral {
-    public int Id;
     public String Empresa;
-    public String FechaInicial;
-    public String FechaFinal;
-    public int IdClsCurriculum;
+    public String Cargo;
+    public Date FechaInicial;
+    public Date FechaFinal;
 
-
-    public clsExperienciaLaboral(int Id, int IdClsCurriculum, String Empresa, String FechaInicial, String FechaFinal) {
-        this.Id = Id;
-        this.IdClsCurriculum = IdClsCurriculum;
+    public clsExperienciaLaboral(String Empresa, String Cargo, Date FechaInicial, Date FechaFinal) {
         this.Empresa = Empresa;
+        this.Cargo = Cargo;
         this.FechaInicial = FechaInicial;
         this.FechaFinal = FechaFinal;
     }
 
-
-    public int getId() {
-        return Id;
+    public clsExperienciaLaboral() {
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    
+    public String getCargo() {
+        return Cargo;
+    }
+
+    public void setCargo(String Cargo) {
+        this.Cargo = Cargo;
+    }
+
+    public Date getFechaInicial() {
+        return FechaInicial;
+    }
+
+    public void setFechaInicial(Date FechaInicial) {
+        this.FechaInicial = FechaInicial;
+    }
+
+    public Date getFechaFinal() {
+        return FechaFinal;
+    }
+
+    public void setFechaFinal(Date FechaFinal) {
+        this.FechaFinal = FechaFinal;
     }
 
     public String getEmpresa() {
@@ -41,25 +57,4 @@ public class clsExperienciaLaboral {
         this.Empresa = Empresa;
     }
 
-    public String getFechaInicial() {
-        return FechaInicial;
-    }
-
-    public void setFechaInicial(String FechaInicial) {
-        this.FechaInicial = FechaInicial;
-    }
-
-    public String getFechaFinal() {
-        return FechaFinal;
-    }
-
-    public void setFechaFinal(String FechaFinal) {
-        this.FechaFinal = FechaFinal;
-    }
-    public int getIdClsCurriculum() {
-        return IdClsCurriculum;
-    }
-    public void setIdClsCurriculum(int IdClsCurriculum) {
-        this.IdClsCurriculum = IdClsCurriculum;
-    }
 }

@@ -27,6 +27,10 @@ public class clsCurriculum {
         this.Educacion = Educacion;
     }
 
+    public clsCurriculum() {
+    }
+    
+
     public String getNombre() {
         return Nombre;
     }
