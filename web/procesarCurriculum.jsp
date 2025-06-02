@@ -4,7 +4,6 @@
 <%@page import="backend.database.clsQuerys"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-
 <%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
