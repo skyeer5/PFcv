@@ -4,6 +4,7 @@
  */
 package backend;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -12,20 +13,13 @@ import java.util.List;
  */
 public class clsCurriculum {
     public String Nombre;
+    public java.sql.Date FechaNacimiento;
     public String Telefono;
     public String Correo;
-    public String AcercaDeMi;
+    public String Domicilio;
     public List<clsExperienciaLaboral> Trabajos;
     public List<clsEducacion> Educacion;
 
-    public clsCurriculum(String Nombre, String Telefono, String Correo, String AcercaDeMi, List<clsExperienciaLaboral> Trabajos, List<clsEducacion> Educacion) {
-        this.Nombre = Nombre;
-        this.Telefono = Telefono;
-        this.Correo = Correo;
-        this.AcercaDeMi = AcercaDeMi;
-        this.Trabajos = Trabajos;
-        this.Educacion = Educacion;
-    }
 
     public clsCurriculum() {
     }
@@ -54,15 +48,6 @@ public class clsCurriculum {
     public void setCorreo(String Correo) {
         this.Correo = Correo;
     }
-
-    public String getAcercaDeMi() {
-        return AcercaDeMi;
-    }
-
-    public void setAcercaDeMi(String AcercaDeMi) {
-        this.AcercaDeMi = AcercaDeMi;
-    }
-
     public List<clsExperienciaLaboral> getTrabajos() {
         return Trabajos;
     }
@@ -78,4 +63,21 @@ public class clsCurriculum {
     public void setEducacion(List<clsEducacion> Educacion) {
         this.Educacion = Educacion;
     }
+
+    public Date getFechaNacimiento() {
+        return FechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date FechaNacimiento) {
+        this.FechaNacimiento = FechaNacimiento;
+    }
+
+    public String getDomicilio() {
+        return Domicilio;
+    }
+
+    public void setDomicilio(String Domicilio) {
+        this.Domicilio = Domicilio;
+    }
+    
 }

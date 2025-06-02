@@ -13,13 +13,7 @@ public class clsExperienciaLaboral {
     public String Cargo;
     public Date FechaInicial;
     public Date FechaFinal;
-
-    public clsExperienciaLaboral(String Empresa, String Cargo, Date FechaInicial, Date FechaFinal) {
-        this.Empresa = Empresa;
-        this.Cargo = Cargo;
-        this.FechaInicial = FechaInicial;
-        this.FechaFinal = FechaFinal;
-    }
+    public String Responsabilidades;
 
     public clsExperienciaLaboral() {
     }
@@ -56,5 +50,14 @@ public class clsExperienciaLaboral {
     public void setEmpresa(String Empresa) {
         this.Empresa = Empresa;
     }
+
+    public String getResponsabilidades() {
+        return Responsabilidades;
+    }
+
+    public void setResponsabilidades(String Responsabilidades) {
+        this.Responsabilidades = Responsabilidades;
+    }
+    
 
 }

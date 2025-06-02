@@ -103,10 +103,13 @@
             </div>
             </form>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
         <script>
             let panelActual = 1;
             document.getElementById("btnSig").addEventListener("click", function(){
-                if(panelActual<3 && panelActual>=1){
+                if(panelActual<3 && panelActual>=1 && validarPasos()){
                     document.getElementById(panelActual).classList.remove("active");
                     document.getElementById(panelActual+1).classList.add("active");
                     document.getElementById(panelActual+10).classList.remove("active");
@@ -115,8 +118,8 @@
                 }
                 if(panelActual===3)
                 {
-                    document.getElementById("btnSig").disabled=true;
-                    document.getElementById("btnSubmit").disabled=false;
+                    document.getElementById("btnSig").style.display = "none";
+                    document.getElementById("btnEnviar").style.display = "block";             
                 }
 
             });
@@ -128,28 +131,33 @@
                     document.getElementById(panelActual+9).classList.add("active");
                     panelActual--;
                 }
-                if(panelActual===3)
+                if(panelActual<=2)
                 {
-                    document.getElementById("btnSig").style.display = "inline-block";
-                    document.getElementById("btnSubmit").style.display = "none";
+                    document.getElementById("btnSig").style.display = "block";  
+                    document.getElementById("btnEnviar").style.display = "none";
                 }
             });
             document.getElementById("btnEnviar").addEventListener("click", function(){
-                 if(!validarForm())
+                 if(!validarPasos())
                  {
                      event.preventDefault();
                  }
              });
-            const inputRequeridos = Array.from(document.querySelectorAll("[required]"));
-            function validarForm(){
-                if(inputRequeridos.some(campo=>!inputRequeridos.value)){
-                    alert("Completar los campos obligatorios");
-                    return false;
-                }
-                alert("hola");
-                return true;
-            };
-            
+            function validarPasos() {
+                let valid = true;
+                let strPanel = '#'+panelActual;
+  
+
+                $(strPanel).find('[required]').each(function() {
+                    if (!$(this).val()) {
+                        $(this).addClass('is-invalid');
+                        valid = false;
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                return valid;
+            }
         </script>
     </body>
 </html>

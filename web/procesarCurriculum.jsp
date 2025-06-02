@@ -18,7 +18,7 @@
     curriculum.setNombre(nombre);
     curriculum.setTelefono(telefono);
     curriculum.setCorreo(correo);
-    curriculum.setAcercaDeMi(acercaDeMi);
+    curriculum.setDomicilio(acercaDeMi);
     
     // Procesar educación (arreglo de parámetros)
     String[] instituciones = request.getParameterValues("institucion[]");

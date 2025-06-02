@@ -33,12 +33,12 @@ public class clsQuerys {
         con.setAutoCommit(false);
         
         // 1. Insertar curriculum principal
-        String queryCurriculum = "INSERT INTO Curriculum(Nombre, Telefono, Correo, AcercaDeMi) VALUES(?,?,?,?)";
+        String queryCurriculum = "INSERT INTO Curriculum(Nombre, Telefono, Correo, Domicilio) VALUES(?,?,?,?)";
         psCurriculum = con.prepareStatement(queryCurriculum, Statement.RETURN_GENERATED_KEYS);
         psCurriculum.setString(1, curriculum.Nombre);
         psCurriculum.setString(2, curriculum.Telefono);
         psCurriculum.setString(3, curriculum.Correo);
-        psCurriculum.setString(4, curriculum.AcercaDeMi);
+        psCurriculum.setString(4, curriculum.Domicilio);
         psCurriculum.executeUpdate();
             // Obtener ID generado
         rs = psCurriculum.getGeneratedKeys();
@@ -66,13 +66,14 @@ public class clsQuerys {
         {
             // 3. Insertar experiencia laboral
         for (clsExperienciaLaboral lab : curriculum.Trabajos) {
-            String queryExperiencia = "INSERT INTO ExperienciaLaboral(Empresa, Cargo, FechaInicial, FechaFinal, CurriculumId) VALUES(?,?,?,?,?)";
+            String queryExperiencia = "INSERT INTO ExperienciaLaboral(Empresa, Cargo, FechaInicial, FechaFinal,Responsabilidades, CurriculumId) VALUES(?,?,?,?,?)";
             try (PreparedStatement psLab = con.prepareStatement(queryExperiencia)) {
                 psLab.setString(1, lab.Empresa);
                 psLab.setString(2, lab.Cargo);
                 psLab.setDate(3, new java.sql.Date(lab.FechaInicial.getTime()));
                 psLab.setDate(4, lab.FechaFinal != null ? new java.sql.Date(lab.FechaFinal.getTime()) : null);
-                psLab.setInt(5, curriculumId);
+                psLab.setString(5, lab.Responsabilidades);
+                psLab.setInt(6, curriculumId);
                 psLab.executeUpdate();
             }
         }
