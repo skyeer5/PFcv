@@ -66,7 +66,7 @@ public class clsQuerys {
         {
             // 3. Insertar experiencia laboral
         for (clsExperienciaLaboral lab : curriculum.Trabajos) {
-            String queryExperiencia = "INSERT INTO ExperienciaLaboral(Empresa, Cargo, FechaInicial, FechaFinal,Responsabilidades, CurriculumId) VALUES(?,?,?,?,?)";
+            String queryExperiencia = "INSERT INTO ExperienciaLaboral(Empresa, Cargo, FechaInicial, FechaFinal,Responsabilidades, CurriculumId) VALUES(?,?,?,?,?,?)";
             try (PreparedStatement psLab = con.prepareStatement(queryExperiencia)) {
                 psLab.setString(1, lab.Empresa);
                 psLab.setString(2, lab.Cargo);

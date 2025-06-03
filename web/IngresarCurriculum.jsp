@@ -41,59 +41,69 @@
                         </div>
                         <div class="col-md-6 mt-1">
                             <label for="ptelefono" class="form-label">Telefono*</label>
-                            <input type="number" class="form-control" id="ptelefono" name="ptelefono" required>
+                            <input type="number" class="form-control" minlength="8" maxlength="8" id="ptelefono" name="ptelefono" required>
                         </div>
                         <div class="col-md-6 mt-1">
                             <label for="pcorreo" class="form-label">Correo*</label>
                             <input type="text" class="form-control" id="pcorreo" name="pcorreo" required>
                         </div>
-                        <div class="col-md-12 mt-1">
-                            <label for="pacercaDeMi" class="form-label">Acerca de mi</label>
-                            <textarea class="form-control" id="pacercaDeMi" name="pacercaDeMi" rows="3"></textarea>
+                        <div class="col-md-6 mt-1">
+                            <label for="pdomicilio" class="form-label">Domicilio*</label>
+                            <input type="text" class="form-control" id="pdomicilio" name="pdomicilio" required>
                         </div>
                     </div>
                 </div>
                 <!-- Inicio Educacion -->        
                 <div class="tab-pane fade show" id="2">
                     <h3>Formación profesional</h3>
-                    <div class="row">
+                    <div id="edu-container">
+                    <div class="row educacion-grupo border rounded p-2 pb-3 mt-2">
                         <div class="col-md-6 mt-1">
                             <label for="pinstitucion" class="form-label">Institución*</label>
-                            <input type="text" class="form-control" id="pinstitucion" name="pinstitucion"  required>
+                            <input type="text" class="form-control" name="pinstitucion[]"  required>
                         </div>
                         <div class="col-md-6 mt-1">
                             <label for="ptitulo" class="form-label">Título/Certificación*</label>
-                            <input type="text" class="form-control" id="ptitulo" name="ptitulo"  required>
+                            <input type="text" class="form-control"name="ptitulo[]"  required>
                         </div>
                         <div class="col-md-6 mt-1">
                             <label for="pfecha" class="form-label">Fecha de obtención*</label>
-                            <input type="date" class="form-control" id="pfecha" name="pfecha"  required>
+                            <input type="date" class="form-control" name="pfecha[]"  required>
                         </div>
                     </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" id="btnAgregarEdu">Agregar +</button>
                 </div>
                 <!-- Inicio Experiencia-->
                 <div class="tab-pane fade show" id="3">
                     <h3>Experiencia Laboral</h3>
-                    <div class="row">
-                        <div class="col-md-6 mt-1">
-                            <label for="pempresa" class="form-label">Empresa*</label>
-                            <input type="text" class="form-control" id="pempresa" name="pempresa"  required>
-                        </div>
-                        <div class="col-md-6 mt-1">
-                            <label for="pcargo" class="form-label">Cargo*</label>
-                            <input type="text" class="form-control" id="pcargo" name="pcargo"  required>
-                        </div>
-                        <div class="col-md-6 mt-1"> 
-                            <label for="pfechainicio" class="form-label">Fecha de inicio*</label>
-                            <input type="date" class="form-control" id="pfechainicio" name="pfechainicio" required>
-                        </div>
-                        <div class="col-md-6 mt-1">
-                            <label for="pfechafin" class="form-label">Fecha de fin*</label>
-                            <input type="date" class="form-control" id="pfechafin" name="pfechafin" required>
+                    <div id="expLaboral-container">
+                        <div class="row expLaboral-grupo border rounded p-2 pb-3 mt-2">
+                            <div class="col-md-6 mt-1">
+                                <label for="pempresa" class="form-label">Empresa*</label>
+                                <input type="text" class="form-control" name="pempresa[]"  required>
+                            </div>
+                            <div class="col-md-6 mt-1">
+                                <label for="pcargo" class="form-label">Cargo*</label>
+                                <input type="text" class="form-control" name="pcargo[]"  required>
+                            </div>
+                            <div class="col-md-6 mt-1"> 
+                                <label for="pfechainicio" class="form-label">Fecha de inicio*</label>
+                                <input type="date" class="form-control"  name="pfechainicio[]" required>
+                            </div>
+                            <div class="col-md-6 mt-1">
+                                <label for="pfechafin" class="form-label">Fecha de fin*</label>
+                                <input type="date" class="form-control" name="pfechafin[]" required>
+                            </div>
+                            <div class="col-md-12 mt-1">
+                                <label for="presponsabilidades" class="form-label">Responsabilidades*</label>
+                                <textarea type="text" class="form-control" name="presponsabilidades[]" required ></textarea>
+                            </div>
                         </div>
                     </div>
-                <!-- Inicio botones -->
+                    <button type="button" class="btn btn-primary mt-2" id="btnAgregarExpLaboral">Agregar +</button>
                 </div>
+                <!-- Inicio botones -->
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                         <button type="button" class="btn btn-secondary" id="btnVolver">Volver</button>
                         <button type="button" class="btn btn-primary" id="btnSig">Siguiente</button>
@@ -108,6 +118,7 @@
     
         <script>
             let panelActual = 1;
+            let eduActual = 1;
             document.getElementById("btnSig").addEventListener("click", function(){
                 if(panelActual<3 && panelActual>=1 && validarPasos()){
                     document.getElementById(panelActual).classList.remove("active");
@@ -158,6 +169,17 @@
                 });
                 return valid;
             }
+            $('#btnAgregarEdu').click(function(){
+                let nuevoEdu = $('.educacion-grupo').first().clone();
+                nuevoEdu.find('input').val('');
+                $('#edu-container').append(nuevoEdu);
+            });
+            $('#btnAgregarExpLaboral').click(function(){
+                let nuevoExpLaboral = $('.expLaboral-grupo').first().clone();
+                nuevoExpLaboral.find('input').val('');
+                nuevoExpLaboral.find('textarea').val('');
+                $('#expLaboral-container').append(nuevoExpLaboral);
+            });
         </script>
     </body>
 </html>
