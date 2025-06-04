@@ -46,6 +46,6 @@
     curriculum.setTrabajos(ExpLaborales);
     
     if(query.fncIngresarCurriculum(curriculum)!= 0){
-        response.sendRedirect("/");
+        response.sendRedirect("/PFcv/Index.jsp");
     }
     %>

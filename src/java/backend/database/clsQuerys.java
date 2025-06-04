@@ -9,8 +9,11 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import backend.clsCurriculum;
+import backend.clsCurriculumVm;
 import backend.clsEducacion;
 import backend.clsExperienciaLaboral;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Dirinfo
@@ -115,5 +118,46 @@ public class clsQuerys {
             return "Error al realizar la consulta";
         }
         
+    }
+    public List<clsCurriculumVm> GetListaCurriculum(){
+        try{
+            List<clsCurriculumVm> curList = new ArrayList();
+            Connection con = clsConexion.getConexion();
+            String query = "select cur.Id, cur.Nombre, cur.Correo, edu.Titulo, edu.Institucion, exp.Empresa, exp.Cargo from Curriculum cur outer apply(select top 1* from Educacion where CurriculumId = cur.Id order by Fecha desc) edu outer apply(select top 1* from ExperienciaLaboral where CurriculumId = cur.Id order by FechaFinal desc) exp where cur.Habilitado = 1;";
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                var cur = new clsCurriculumVm();
+                cur.setId(rs.getInt("Id"));
+                cur.setNombre(rs.getString("Nombre"));
+                cur.setCorreo(rs.getString("Correo"));
+                cur.setEduTitulo(rs.getString("Titulo"));
+                cur.setEduInstitucion(rs.getString("Institucion"));
+                cur.setExpEmpresa(rs.getString("Empresa"));
+                cur.setExpCargo(rs.getString("Cargo"));
+                curList.add(cur);
+            }
+            return curList;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    public int DeleteCurriculum(int id){
+        try{
+            Connection con = clsConexion.getConexion();
+            String query = "update Curriculum set Habilitado=0 where Id="+id;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
     }
 }
